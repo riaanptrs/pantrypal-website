@@ -1,446 +1,99 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PantryPal | Privacy Policy & Terms of Use</title>
-  <meta name="description" content="PantryPal legal pages: Privacy Policy and Terms of Use in Portuguese and English." />
-  <style>
-    :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --accent: #2c7a7b;
-      --accent-dark: #245f60;
+<script>
+  function showLang(lang, buttonEl) {
+    const pt = document.getElementById('pt-content');
+    const en = document.getElementById('en-content');
+    const buttons = document.querySelectorAll('.lang-btn');
+
+    if (lang === 'pt') {
+      pt.classList.remove('hidden');
+      en.classList.add('hidden');
+    } else {
+      en.classList.remove('hidden');
+      pt.classList.add('hidden');
     }
 
-    * { box-sizing: border-box; }
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (buttonEl) buttonEl.classList.add('active');
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+  function getDeepLinkUrl() {
+    const search = window.location.search || '';
+    const hash = window.location.hash || '';
+    return `pantrypal://callback${search}${hash}`;
+  }
+
+  function looksLikeAuthCallback() {
+    const fullUrl = `${window.location.search}${window.location.hash}`.toLowerCase();
+
+    return (
+      fullUrl.includes('access_token=') ||
+      fullUrl.includes('refresh_token=') ||
+      fullUrl.includes('type=signup') ||
+      fullUrl.includes('type=recovery') ||
+      fullUrl.includes('type=invite') ||
+      fullUrl.includes('type=magiclink') ||
+      fullUrl.includes('code=')
+    );
+  }
+
+  function renderOpenAppFallback() {
+    const container = document.querySelector('.container');
+    if (!container) return;
+
+    const card = document.createElement('section');
+    card.className = 'card';
+    card.innerHTML = `
+      <h2>Open PantryPal</h2>
+      <p class="muted">
+        If the app did not open automatically, tap the button below.
+      </p>
+      <p>
+        <a
+          href="${getDeepLinkUrl()}"
+          style="
+            display:inline-block;
+            background:#2c7a7b;
+            color:white;
+            text-decoration:none;
+            padding:12px 18px;
+            border-radius:12px;
+            font-weight:bold;
+          "
+        >
+          Open PantryPal
+        </a>
+      </p>
+    `;
+
+    container.insertBefore(card, container.firstChild.nextSibling);
+  }
+
+  function tryOpenAppFromAuthCallback() {
+    if (!looksLikeAuthCallback()) return;
+
+    renderOpenAppFallback();
+
+    const deepLink = getDeepLinkUrl();
+
+    // Try to open the app automatically
+    window.location.href = deepLink;
+  }
+
+  // Optional: support links like #en or #pt on page load
+  function initializeLanguageFromHash() {
+    const hash = (window.location.hash || '').toLowerCase();
+
+    if (hash === '#en') {
+      const enBtn = document.querySelectorAll('.lang-btn')[1];
+      showLang('en', enBtn);
+    } else {
+      const ptBtn = document.querySelectorAll('.lang-btn')[0];
+      showLang('pt', ptBtn);
     }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #e6fffa, #ffffff);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 32px 24px;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: 2rem;
-      color: var(--accent-dark);
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .lang-switch {
-      display: flex;
-      gap: 10px;
-      margin: 20px 0 0;
-      flex-wrap: wrap;
-    }
-
-    .lang-btn {
-      border: 1px solid var(--accent);
-      background: white;
-      color: var(--accent-dark);
-      padding: 10px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .lang-btn.active {
-      background: var(--accent);
-      color: white;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 28px 24px;
-      margin-bottom: 24px;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: var(--accent-dark);
-      font-size: 1.5rem;
-    }
-
-    h3 {
-      margin-top: 28px;
-      color: var(--accent-dark);
-      font-size: 1.1rem;
-    }
-
-    p, li {
-      font-size: 1rem;
-    }
-
-    ul {
-      padding-left: 22px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      color: var(--muted);
-      text-align: center;
-      padding: 10px 0 30px;
-      font-size: 0.95rem;
-    }
-
-    a {
-      color: var(--accent-dark);
-      word-break: break-word;
-    }
-
-    .note {
-      background: #f9fafb;
-      border-left: 4px solid var(--accent);
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 16px;
-      }
-
-      .hero, .card {
-        padding: 20px 16px;
-      }
-
-      h1 {
-        font-size: 1.7rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <section class="hero">
-      <h1>PantryPal</h1>
-      <p class="subtitle">Privacy Policy and Terms of Use / Política de Privacidade e Termos de Uso</p>
-
-      <div class="lang-switch">
-        <button class="lang-btn active" onclick="showLang('pt', this)">Português</button>
-        <button class="lang-btn" onclick="showLang('en', this)">English</button>
-      </div>
-    </section>
-
-    <!-- PORTUGUESE -->
-    <div id="pt-content">
-      <section class="card">
-        <h2>Política de Privacidade</h2>
-        <p class="muted"><strong>Última atualização:</strong> 01/04/2026</p>
-
-        <p>O PantryPal valoriza a sua privacidade e está comprometido em proteger os dados pessoais dos usuários. Esta Política de Privacidade descreve como coletamos, usamos e protegemos suas informações.</p>
-
-        <h3>1. Informações que coletamos</h3>
-        <p>Podemos coletar os seguintes dados:</p>
-        <ul>
-          <li><strong>Informações fornecidas pelo usuário:</strong> nome (opcional), email, preferências alimentares, listas, receitas e outros dados inseridos no aplicativo.</li>
-          <li><strong>Dados coletados automaticamente:</strong> informações do dispositivo, sistema operacional, dados de uso e interações com o aplicativo.</li>
-          <li><strong>Imagens e recibos:</strong> fotos de recibos e produtos enviadas pelo usuário, bem como os dados extraídos dessas imagens, como nome do produto, preço e quantidade.</li>
-        </ul>
-
-        <h3>2. Como usamos seus dados</h3>
-        <ul>
-          <li>Gerenciar listas de compras e planejamento de refeições</li>
-          <li>Identificar produtos e preços a partir de imagens</li>
-          <li>Melhorar a experiência do usuário</li>
-          <li>Fornecer insights de economia e nutrição</li>
-          <li>Manter o funcionamento e a segurança do aplicativo</li>
-        </ul>
-
-        <h3>3. Uso de Inteligência Artificial</h3>
-        <p>O PantryPal utiliza serviços de terceiros, incluindo a API da OpenAI, para processar imagens de recibos, extrair dados de produtos e sugerir receitas e insights. Esses dados podem ser processados temporariamente por esses serviços para fornecer funcionalidades do aplicativo.</p>
-
-        <h3>4. Compartilhamento de dados</h3>
-        <p>Não vendemos seus dados pessoais.</p>
-        <p>Podemos compartilhar informações com:</p>
-        <ul>
-          <li>Provedores de serviços, como OpenAI, serviços de hospedagem, autenticação e banco de dados</li>
-          <li>Autoridades legais, quando exigido por lei</li>
-        </ul>
-
-        <h3>5. Armazenamento e segurança</h3>
-        <p>Seus dados são armazenados em servidores seguros e protegidos por medidas técnicas adequadas. Ainda assim, nenhum sistema é totalmente seguro, e não podemos garantir segurança absoluta.</p>
-
-        <h3>6. Seus direitos (LGPD)</h3>
-        <p>Você pode:</p>
-        <ul>
-          <li>Acessar seus dados</li>
-          <li>Corrigir informações</li>
-          <li>Solicitar exclusão dos dados</li>
-          <li>Revogar consentimento, quando aplicável</li>
-        </ul>
-        <p>Para exercer esses direitos, entre em contato pelo email: <strong>riaanptrs@gmail.com</strong>.</p>
-
-        <h3>7. Retenção de dados</h3>
-        <p>Mantemos seus dados enquanto sua conta estiver ativa ou enquanto forem necessários para fornecer o serviço, cumprir obrigações legais ou resolver disputas.</p>
-
-        <h3>8. Crianças</h3>
-        <p>O PantryPal não é destinado a menores de 13 anos. Não coletamos intencionalmente dados de crianças.</p>
-
-        <h3>9. Alterações nesta política</h3>
-        <p>Podemos atualizar esta Política de Privacidade periodicamente. Alterações relevantes poderão ser comunicadas no aplicativo ou por outros meios adequados.</p>
-
-        <h3>10. Contato</h3>
-        <p>Email: <strong>riaanptrs@gmail.com</strong><br />
-        Site: <a href="https://riaanptrs.github.io/pantrypal-website/" target="_blank">https://riaanptrs.github.io/pantrypal-website/</a></p>
-      </section>
-
-      <section class="card">
-        <h2>Termos de Uso</h2>
-        <p class="muted"><strong>Última atualização:</strong> 01/04/2026</p>
-
-        <h3>1. Aceitação dos termos</h3>
-        <p>Ao utilizar o aplicativo PantryPal, você concorda com estes Termos de Uso. Caso não concorde, não utilize o aplicativo.</p>
-
-        <h3>2. Descrição do serviço</h3>
-        <p>O PantryPal é um aplicativo que auxilia no gerenciamento de compras, planejamento de refeições, controle de itens e acompanhamento de preços, podendo utilizar inteligência artificial para análise de dados e imagens.</p>
-
-        <h3>3. Conta do usuário</h3>
-        <p>Você é responsável por:</p>
-        <ul>
-          <li>Manter a confidencialidade de sua conta</li>
-          <li>Fornecer informações corretas e atualizadas</li>
-          <li>Todas as atividades realizadas na sua conta</li>
-        </ul>
-
-        <h3>4. Assinaturas e pagamentos</h3>
-        <p>O PantryPal pode oferecer funcionalidades pagas por assinatura.</p>
-        <ul>
-          <li>As assinaturas podem ser renovadas automaticamente, conforme as regras da loja de aplicativos</li>
-          <li>O cancelamento pode ser feito a qualquer momento pela loja de aplicativos utilizada</li>
-          <li>Reembolsos seguem as políticas do Google Play, Apple App Store ou plataforma aplicável</li>
-        </ul>
-
-        <h3>5. Uso permitido</h3>
-        <p>Você concorda em não:</p>
-        <ul>
-          <li>Utilizar o app para fins ilegais</li>
-          <li>Tentar acessar sistemas de forma não autorizada</li>
-          <li>Interferir no funcionamento do aplicativo</li>
-          <li>Usar o serviço para transmitir conteúdo malicioso ou fraudulento</li>
-        </ul>
-
-        <h3>6. Inteligência Artificial</h3>
-        <p>O PantryPal utiliza serviços de terceiros, como OpenAI, para processamento de imagens, extração de dados, sugestões e insights. Os resultados podem não ser 100% precisos e devem ser revisados pelo usuário quando necessário.</p>
-
-        <h3>7. Conteúdo do usuário</h3>
-        <p>Você mantém a propriedade dos dados enviados, como fotos, listas e textos, mas concede ao PantryPal permissão para processá-los com a finalidade de fornecer e melhorar o serviço.</p>
-
-        <h3>8. Limitação de responsabilidade</h3>
-        <p>O PantryPal é fornecido “como está”. Não garantimos:</p>
-        <ul>
-          <li>Precisão total de preços, extrações ou dados</li>
-          <li>Disponibilidade contínua e ininterrupta do serviço</li>
-          <li>Ausência de erros em todas as funcionalidades</li>
-        </ul>
-
-        <h3>9. Encerramento</h3>
-        <p>Podemos suspender ou encerrar contas que violem estes termos ou que façam uso indevido do aplicativo.</p>
-
-        <h3>10. Alterações</h3>
-        <p>Podemos atualizar estes termos a qualquer momento. O uso contínuo do aplicativo após mudanças representa aceitação da versão atualizada.</p>
-
-        <h3>11. Lei aplicável</h3>
-        <p>Este contrato é regido pelas leis da República Federativa do Brasil.</p>
-
-        <h3>12. Contato</h3>
-        <p>Email: <strong>riaanptrs@gmail.com</strong><br />
-        Site: <a href="https://riaanptrs.github.io/pantrypal-website/" target="_blank">https://riaanptrs.github.io/pantrypal-website/</a></p>
-
-        <div class="note">
-          Em caso de conflito de interpretação, a versão em português prevalece.
-        </div>
-      </section>
-    </div>
-
-    <!-- ENGLISH -->
-    <div id="en-content" class="hidden">
-      <section class="card">
-        <h2>Privacy Policy</h2>
-        <p class="muted"><strong>Last updated:</strong> 2026-04-01</p>
-
-        <p>PantryPal values your privacy and is committed to protecting users’ personal data. This Privacy Policy explains how we collect, use, and protect your information.</p>
-
-        <h3>1. Information We Collect</h3>
-        <p>We may collect the following data:</p>
-        <ul>
-          <li><strong>Information provided by the user:</strong> name (optional), email, food preferences, lists, recipes, and other information entered into the app.</li>
-          <li><strong>Automatically collected data:</strong> device information, operating system, usage data, and app interaction data.</li>
-          <li><strong>Images and receipts:</strong> photos of receipts and products uploaded by the user, as well as data extracted from those images, such as product names, prices, and quantities.</li>
-        </ul>
-
-        <h3>2. How We Use Your Data</h3>
-        <ul>
-          <li>Manage grocery lists and meal planning</li>
-          <li>Identify products and prices from images</li>
-          <li>Improve user experience</li>
-          <li>Provide savings and nutrition insights</li>
-          <li>Maintain app functionality and security</li>
-        </ul>
-
-        <h3>3. Use of Artificial Intelligence</h3>
-        <p>PantryPal uses third-party services, including the OpenAI API, to process receipt images, extract product data, and provide recipe suggestions and insights. Such data may be processed temporarily by these services to provide app functionality.</p>
-
-        <h3>4. Data Sharing</h3>
-        <p>We do not sell your personal data.</p>
-        <p>We may share information with:</p>
-        <ul>
-          <li>Service providers such as OpenAI, hosting providers, authentication services, and database providers</li>
-          <li>Legal authorities, when required by law</li>
-        </ul>
-
-        <h3>5. Storage and Security</h3>
-        <p>Your data is stored on secure servers and protected by appropriate technical measures. However, no system is completely secure, and we cannot guarantee absolute security.</p>
-
-        <h3>6. Your Rights</h3>
-        <p>Depending on applicable law, you may have the right to:</p>
-        <ul>
-          <li>Access your data</li>
-          <li>Correct inaccurate information</li>
-          <li>Request deletion of your data</li>
-          <li>Withdraw consent, where applicable</li>
-        </ul>
-        <p>To exercise these rights, contact us at: <strong>riaanptrs@gmail.com</strong>.</p>
-
-        <h3>7. Data Retention</h3>
-        <p>We keep your data while your account is active or as needed to provide the service, comply with legal obligations, or resolve disputes.</p>
-
-        <h3>8. Children</h3>
-        <p>PantryPal is not intended for children under 13 years of age. We do not knowingly collect personal data from children.</p>
-
-        <h3>9. Changes to This Policy</h3>
-        <p>We may update this Privacy Policy from time to time. Material changes may be communicated within the app or through other appropriate means.</p>
-
-        <h3>10. Contact</h3>
-        <p>Email: <strong>riaanptrs@gmail.com</strong><br />
-        Website: <a href="https://riaanptrs.github.io/pantrypal-website/" target="_blank">https://riaanptrs.github.io/pantrypal-website/</a></p>
-      </section>
-
-      <section class="card">
-        <h2>Terms of Use</h2>
-        <p class="muted"><strong>Last updated:</strong> 2026-04-01</p>
-
-        <h3>1. Acceptance of Terms</h3>
-        <p>By using PantryPal, you agree to these Terms of Use. If you do not agree, do not use the app.</p>
-
-        <h3>2. Service Description</h3>
-        <p>PantryPal is an application designed to help users manage grocery shopping, meal planning, item tracking, and price tracking, including the use of artificial intelligence to analyze data and images.</p>
-
-        <h3>3. User Account</h3>
-        <p>You are responsible for:</p>
-        <ul>
-          <li>Keeping your account secure</li>
-          <li>Providing accurate and up-to-date information</li>
-          <li>All activities that occur under your account</li>
-        </ul>
-
-        <h3>4. Subscriptions and Payments</h3>
-        <p>PantryPal may offer paid subscription features.</p>
-        <ul>
-          <li>Subscriptions may renew automatically according to the applicable app store rules</li>
-          <li>You may cancel at any time through the app store used for purchase</li>
-          <li>Refunds follow the policies of Google Play, Apple App Store, or other applicable platform</li>
-        </ul>
-
-        <h3>5. Acceptable Use</h3>
-        <p>You agree not to:</p>
-        <ul>
-          <li>Use the app for illegal purposes</li>
-          <li>Attempt unauthorized access to systems or accounts</li>
-          <li>Interfere with the functioning of the app</li>
-          <li>Use the service to transmit malicious or fraudulent content</li>
-        </ul>
-
-        <h3>6. Artificial Intelligence</h3>
-        <p>PantryPal uses third-party services such as OpenAI for image processing, data extraction, suggestions, and insights. Results may not always be 100% accurate and should be reviewed by the user when necessary.</p>
-
-        <h3>7. User Content</h3>
-        <p>You retain ownership of the data you submit, such as photos, lists, and text, but you grant PantryPal permission to process it in order to provide and improve the service.</p>
-
-        <h3>8. Limitation of Liability</h3>
-        <p>PantryPal is provided “as is.” We do not guarantee:</p>
-        <ul>
-          <li>Complete accuracy of prices, extracted information, or other data</li>
-          <li>Continuous or uninterrupted service availability</li>
-          <li>Error-free operation of all features</li>
-        </ul>
-
-        <h3>9. Termination</h3>
-        <p>We may suspend or terminate accounts that violate these terms or misuse the application.</p>
-
-        <h3>10. Changes</h3>
-        <p>We may update these terms at any time. Continued use of the app after changes means acceptance of the updated version.</p>
-
-        <h3>11. Governing Law</h3>
-        <p>These terms are governed by the laws of the Federative Republic of Brazil.</p>
-
-        <h3>12. Contact</h3>
-        <p>Email: <strong>riaanptrs@gmail.com</strong><br />
-        Website: <a href="https://riaanptrs.github.io/pantrypal-website/" target="_blank">https://riaanptrs.github.io/pantrypal-website/</a></p>
-
-        <div class="note">
-          In case of conflict or inconsistency, the Portuguese version shall prevail.
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      © PantryPal
-    </footer>
-  </div>
-
-  <script>
-    function showLang(lang, buttonEl) {
-      const pt = document.getElementById('pt-content');
-      const en = document.getElementById('en-content');
-      const buttons = document.querySelectorAll('.lang-btn');
-
-      if (lang === 'pt') {
-        pt.classList.remove('hidden');
-        en.classList.add('hidden');
-      } else {
-        en.classList.remove('hidden');
-        pt.classList.add('hidden');
-      }
-
-      buttons.forEach(btn => btn.classList.remove('active'));
-      buttonEl.classList.add('active');
-    }
-  </script>
-</body>
-</html>
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initializeLanguageFromHash();
+    tryOpenAppFromAuthCallback();
+  });
+</script>
