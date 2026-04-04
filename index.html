@@ -422,19 +422,28 @@
       if (!container) return;
       const card = document.createElement('section');
       card.className = 'card';
+      const prefersPortuguese = (navigator.language || '').toLowerCase().startsWith('pt');
       card.innerHTML = `
-        <h2>Open VivaPantry</h2>
-        <p class="muted">If the app did not open automatically, tap the button below.</p>
+        <h2>${prefersPortuguese ? 'E-mail confirmado' : 'Email confirmed'}</h2>
+        <p class="muted">
+          ${prefersPortuguese
+            ? 'Seus documentos legais aparecem abaixo. Quando quiser continuar, toque no botao para abrir o app.'
+            : 'Your legal terms are shown below. When you are ready to continue, tap the button to open the app.'}
+        </p>
         <p>
           <a
             href="${getDeepLinkUrl()}"
             onclick="openApp(); return false;"
             style="display:inline-block;background:#1f7a72;color:#fff;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:700;"
           >
-            Open VivaPantry
+            ${prefersPortuguese ? 'Abrir VivaPantry' : 'Open VivaPantry'}
           </a>
         </p>
-        <p class="muted">If it still does not open, use your device browser (Chrome/Safari) instead of the mail preview.</p>
+        <p class="muted">
+          ${prefersPortuguese
+            ? 'Se nao abrir, use o navegador do aparelho (Chrome/Safari) em vez da visualizacao do e-mail.'
+            : 'If it does not open, use your device browser (Chrome/Safari) instead of the mail preview.'}
+        </p>
       `;
       container.insertBefore(card, container.firstChild.nextSibling);
     }
@@ -442,7 +451,6 @@
     function tryOpenAppFromAuthCallback() {
       if (!looksLikeAuthCallback()) return;
       renderOpenAppFallback();
-      openApp();
     }
 
     document.addEventListener('DOMContentLoaded', function () {
