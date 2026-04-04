@@ -1,2 +1,2 @@
-# pantrypal-website
-Official PantryPal website, privacy policy, and terms of use
+# vivapantry-website
+Official VivaPantry website, privacy policy, and terms of use
