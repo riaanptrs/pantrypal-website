@@ -44,6 +44,34 @@
       cursor: pointer;
     }
     .lang-btn.active { background: var(--accent); color: #fff; }
+    .primary-action {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+    }
+    .primary-action[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0 14px;
+    }
+    .consent-row input {
+      margin-top: 4px;
+    }
+    .consent-label {
+      color: var(--text);
+      font-size: 0.98rem;
+    }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -427,17 +455,26 @@
         <h2>${prefersPortuguese ? 'E-mail confirmado' : 'Email confirmed'}</h2>
         <p class="muted">
           ${prefersPortuguese
-            ? 'Seus documentos legais aparecem abaixo. Quando quiser continuar, toque no botao para abrir o app.'
-            : 'Your legal terms are shown below. When you are ready to continue, tap the button to open the app.'}
+            ? 'Seus documentos legais aparecem abaixo. Leia os termos e confirme a aceitacao antes de abrir o app.'
+            : 'Your legal terms are shown below. Read the terms and confirm acceptance before opening the app.'}
         </p>
+        <label class="consent-row">
+          <input id="terms-consent-checkbox" type="checkbox" />
+          <span class="consent-label">
+            ${prefersPortuguese
+              ? 'Li e aceito a Politica de Privacidade e os Termos de Uso do VivaPantry.'
+              : 'I have read and accept the VivaPantry Privacy Policy and Terms of Service.'}
+          </span>
+        </label>
         <p>
-          <a
-            href="${getDeepLinkUrl()}"
-            onclick="openApp(); return false;"
-            style="display:inline-block;background:#1f7a72;color:#fff;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:700;"
+          <button
+            id="open-app-button"
+            class="primary-action"
+            type="button"
+            disabled
           >
             ${prefersPortuguese ? 'Abrir VivaPantry' : 'Open VivaPantry'}
-          </a>
+          </button>
         </p>
         <p class="muted">
           ${prefersPortuguese
@@ -446,6 +483,20 @@
         </p>
       `;
       container.insertBefore(card, container.firstChild.nextSibling);
+
+      const checkbox = document.getElementById('terms-consent-checkbox');
+      const button = document.getElementById('open-app-button');
+
+      if (checkbox && button) {
+        checkbox.addEventListener('change', function () {
+          button.disabled = !checkbox.checked;
+        });
+
+        button.addEventListener('click', function () {
+          if (!checkbox.checked) return;
+          openApp();
+        });
+      }
     }
 
     function tryOpenAppFromAuthCallback() {
