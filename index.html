@@ -84,6 +84,7 @@
     p, li { font-size: 1rem; margin-top: 0; }
     ul { margin: 0 0 6px; padding-left: 22px; }
     .muted { color: var(--muted); font-size: 0.95rem; }
+    .status-note { margin-top: 12px; }
     .hidden { display: none; }
     footer { text-align: center; color: var(--muted); font-size: 0.93rem; padding: 8px 0 28px; }
     a { color: var(--accent-strong); word-break: break-word; }
@@ -431,18 +432,42 @@
     function openApp() {
       const primary = getDeepLinkUrl();
       const legacy = getLegacyDeepLinkUrl();
+      const androidIntent = getAndroidIntentUrl();
+      const fallbackLink = document.getElementById('manual-open-link');
+      const status = document.getElementById('open-app-status');
+
+      if (fallbackLink) {
+        fallbackLink.setAttribute('href', primary);
+      }
+
+      if (status) {
+        status.textContent = /android/i.test(navigator.userAgent)
+          ? 'Trying to open VivaPantry. If nothing happens, tap the manual link below or open this page in Chrome.'
+          : 'Trying to open VivaPantry. If nothing happens, tap the manual link below or open this page in Safari.';
+      }
+
+      // Some mobile browsers ignore direct location changes for custom schemes.
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+      iframe.src = primary;
+      document.body.appendChild(iframe);
 
       window.location.href = primary;
 
       setTimeout(() => {
         window.location.href = legacy;
-      }, 350);
+      }, 250);
 
       setTimeout(() => {
         if (/android/i.test(navigator.userAgent)) {
-          window.location.href = getAndroidIntentUrl();
+          window.location.href = androidIntent;
         }
-      }, 900);
+      }, 700);
+
+      setTimeout(() => {
+        iframe.remove();
+      }, 2000);
     }
 
     function renderOpenAppFallback() {
@@ -480,6 +505,12 @@
           ${prefersPortuguese
             ? 'Se nao abrir, use o navegador do aparelho (Chrome/Safari) em vez da visualizacao do e-mail.'
             : 'If it does not open, use your device browser (Chrome/Safari) instead of the mail preview.'}
+        </p>
+        <p id="open-app-status" class="muted status-note"></p>
+        <p class="muted">
+          <a id="manual-open-link" href="${getDeepLinkUrl()}">
+            ${prefersPortuguese ? 'Toque aqui para abrir manualmente' : 'Tap here to open manually'}
+          </a>
         </p>
       `;
       container.insertBefore(card, container.firstChild.nextSibling);
