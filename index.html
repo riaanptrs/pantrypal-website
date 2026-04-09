@@ -55,9 +55,23 @@
       border: 0;
       cursor: pointer;
     }
-    .primary-action[disabled] {
+    .primary-action[disabled],
+    .primary-action.is-disabled,
+    .secondary-action.is-disabled {
       opacity: 0.45;
       cursor: not-allowed;
+      pointer-events: none;
+    }
+    .secondary-action {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent-strong);
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      cursor: pointer;
     }
     .consent-row {
       display: flex;
@@ -86,11 +100,36 @@
     .muted { color: var(--muted); font-size: 0.95rem; }
     .status-note { margin-top: 12px; }
     .hidden { display: none; }
+    .legal-consent-card {
+      position: sticky;
+      bottom: 14px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px rgba(31, 41, 55, 0.12);
+    }
+    .legal-consent-title { margin-bottom: 10px; }
+    .action-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 16px;
+    }
     footer { text-align: center; color: var(--muted); font-size: 0.93rem; padding: 8px 0 28px; }
     a { color: var(--accent-strong); word-break: break-word; }
     @media (max-width: 640px) {
       .container { padding: 14px; }
       .hero, .card { padding: 18px 14px; }
+      .legal-consent-card { bottom: 10px; }
+      .action-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .primary-action,
+      .secondary-action {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -434,16 +473,20 @@
       const alternate = getAlternateDeepLinkUrl();
       const androidIntent = getAndroidIntentUrl();
       const fallbackLink = document.getElementById('manual-open-link');
+      const primaryLink = document.getElementById('open-app-link');
       const status = document.getElementById('open-app-status');
 
       if (fallbackLink) {
         fallbackLink.setAttribute('href', primary);
       }
+      if (primaryLink) {
+        primaryLink.setAttribute('href', primary);
+      }
 
       if (status) {
         status.textContent = /android/i.test(navigator.userAgent)
-          ? 'Trying to open VivaPantry. If nothing happens, tap the manual link below or open this page in Chrome.'
-          : 'Trying to open VivaPantry. If nothing happens, tap the manual link below or open this page in Safari.';
+          ? 'Trying to open VivaPantry. If nothing happens, use the Go back to app link below or open this page in Chrome.'
+          : 'Trying to open VivaPantry. If nothing happens, use the Go back to app link below or open this page in Safari.';
       }
 
       // Use an actual anchor click from the button tap so mobile browsers treat
@@ -485,15 +528,16 @@
     function renderOpenAppFallback() {
       const container = document.querySelector('.container');
       if (!container) return;
+      const footer = container.querySelector('footer');
       const card = document.createElement('section');
-      card.className = 'card';
+      card.className = 'card legal-consent-card';
       const prefersPortuguese = (navigator.language || '').toLowerCase().startsWith('pt');
       card.innerHTML = `
-        <h2>${prefersPortuguese ? 'E-mail confirmado' : 'Email confirmed'}</h2>
+        <h2 class="legal-consent-title">${prefersPortuguese ? 'Confirmacao e abertura do app' : 'Confirmation and app opening'}</h2>
         <p class="muted">
           ${prefersPortuguese
-            ? 'Seus documentos legais aparecem abaixo. Leia os termos e confirme a aceitacao antes de abrir o app.'
-            : 'Your legal terms are shown below. Read the terms and confirm acceptance before opening the app.'}
+            ? 'Agora que voce chegou ao final da pagina, confirme a aceitacao dos termos para voltar ao app.'
+            : 'Now that you reached the end of the page, confirm acceptance of the terms to go back to the app.'}
         </p>
         <label class="consent-row">
           <input id="terms-consent-checkbox" type="checkbox" />
@@ -503,40 +547,63 @@
               : 'I have read and accept the VivaPantry Privacy Policy and Terms of Service.'}
           </span>
         </label>
-        <p>
-          <button
-            id="open-app-button"
-            class="primary-action"
-            type="button"
-            disabled
+        <div class="action-row">
+          <a
+            id="open-app-link"
+            class="primary-action is-disabled"
+            href="${getDeepLinkUrl()}"
+            aria-disabled="true"
           >
-            ${prefersPortuguese ? 'Abrir VivaPantry' : 'Open VivaPantry'}
-          </button>
-        </p>
+            ${prefersPortuguese ? 'Concordo e abrir o app' : 'I agree and open the app'}
+          </a>
+          <a
+            id="manual-open-link"
+            class="secondary-action is-disabled"
+            href="${getDeepLinkUrl()}"
+            aria-disabled="true"
+          >
+            ${prefersPortuguese ? 'Voltar para o app' : 'Go back to app'}
+          </a>
+        </div>
         <p class="muted">
           ${prefersPortuguese
-            ? 'Se nao abrir, use o navegador do aparelho (Chrome/Safari) em vez da visualizacao do e-mail.'
-            : 'If it does not open, use your device browser (Chrome/Safari) instead of the mail preview.'}
+            ? 'Se nao abrir, use o navegador do aparelho em vez da visualizacao do e-mail. No Android, o Chrome costuma funcionar melhor; no iPhone, use o Safari.'
+            : 'If it does not open, use your device browser instead of the mail preview. On Android, Chrome usually works best; on iPhone, use Safari.'}
         </p>
         <p id="open-app-status" class="muted status-note"></p>
-        <p class="muted">
-          <a id="manual-open-link" href="${getDeepLinkUrl()}">
-            ${prefersPortuguese ? 'Toque aqui para abrir manualmente' : 'Tap here to open manually'}
-          </a>
-        </p>
       `;
-      container.insertBefore(card, container.firstChild.nextSibling);
+      if (footer) {
+        container.insertBefore(card, footer);
+      } else {
+        container.appendChild(card);
+      }
 
       const checkbox = document.getElementById('terms-consent-checkbox');
-      const button = document.getElementById('open-app-button');
+      const primaryLink = document.getElementById('open-app-link');
+      const manualLink = document.getElementById('manual-open-link');
 
-      if (checkbox && button) {
+      if (checkbox && primaryLink && manualLink) {
         checkbox.addEventListener('change', function () {
-          button.disabled = !checkbox.checked;
+          const accepted = checkbox.checked;
+          primaryLink.classList.toggle('is-disabled', !accepted);
+          primaryLink.setAttribute('aria-disabled', accepted ? 'false' : 'true');
+          manualLink.classList.toggle('is-disabled', !accepted);
+          manualLink.setAttribute('aria-disabled', accepted ? 'false' : 'true');
         });
 
-        button.addEventListener('click', function () {
-          if (!checkbox.checked) return;
+        primaryLink.addEventListener('click', function (event) {
+          if (!checkbox.checked) {
+            event.preventDefault();
+            return;
+          }
+          openApp();
+        });
+
+        manualLink.addEventListener('click', function (event) {
+          if (!checkbox.checked) {
+            event.preventDefault();
+            return;
+          }
           openApp();
         });
       }
