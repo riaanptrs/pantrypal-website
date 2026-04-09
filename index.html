@@ -473,6 +473,14 @@
       return `intent://callback${payload}#Intent;scheme=vivapantry;package=com.riaan.vivapantry;end`;
     }
 
+    function getPreferredLaunchUrl() {
+      if (/android/i.test(navigator.userAgent)) {
+        return getAndroidIntentUrl();
+      }
+
+      return getDeepLinkUrl();
+    }
+
     function looksLikeAuthCallback() {
       const fullUrl = `${window.location.search}${window.location.hash}`.toLowerCase();
       return (
@@ -487,7 +495,8 @@
     }
 
     function openApp() {
-      const primary = getDeepLinkUrl();
+      const primary = getPreferredLaunchUrl();
+      const canonicalDeepLink = getDeepLinkUrl();
       const alternate = getAlternateDeepLinkUrl();
       const androidIntent = getAndroidIntentUrl();
       const fallbackLink = document.getElementById('manual-open-link');
@@ -495,7 +504,7 @@
       const status = document.getElementById('open-app-status');
 
       if (fallbackLink) {
-        fallbackLink.setAttribute('href', primary);
+        fallbackLink.setAttribute('href', canonicalDeepLink);
       }
       if (primaryLink) {
         primaryLink.setAttribute('href', primary);
@@ -523,17 +532,17 @@
       const iframe = document.createElement('iframe');
       iframe.style.display = 'none';
       iframe.setAttribute('aria-hidden', 'true');
-      iframe.src = primary;
+      iframe.src = canonicalDeepLink;
       document.body.appendChild(iframe);
 
       window.location.href = primary;
 
       setTimeout(() => {
-        window.location.href = alternate;
+        window.location.href = canonicalDeepLink;
       }, 250);
 
       setTimeout(() => {
-        if (/android/i.test(navigator.userAgent)) {
+        if (/android/i.test(navigator.userAgent) && primary !== androidIntent) {
           window.location.href = androidIntent;
         }
       }, 700);
@@ -574,7 +583,7 @@
           <a
             id="open-app-link"
             class="primary-action is-disabled"
-            href="${getDeepLinkUrl()}"
+            href="${getPreferredLaunchUrl()}"
             aria-disabled="true"
           >
             ${prefersPortuguese ? 'Concordo e abrir o app' : 'I agree and open the app'}
