@@ -6,42 +6,43 @@
   <title>VivaPantry | Plan meals. Track groceries. Waste less.</title>
   <meta
     name="description"
-    content="VivaPantry is an AI-powered grocery, pantry, recipe, receipt scanning, and meal planning app coming soon on Android and iOS."
+    content="VivaPantry helps households turn receipts, pantry items, recipes, and preferences into smarter meal plans and shopping lists."
   />
   <link rel="canonical" href="https://vivapantry.com/" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="VivaPantry home">
+    <a class="brand" href="/" aria-label="VivaPantry home">
       <span class="brand-mark">V</span>
       <span>VivaPantry</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/support">Support</a>
-      <a href="/delete-account">Delete Account</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">AI-powered kitchen planning</p>
+        <p class="eyebrow">AI-powered grocery and meal planning</p>
         <h1>Plan meals. Track groceries. Waste less.</h1>
         <p class="hero-text">
-          VivaPantry connects receipts, pantry inventory, recipes, grocery lists, and AI meal planning so
-          your household can shop with less guesswork.
+          VivaPantry helps households turn receipts, pantry items, recipes, and preferences into
+          smarter meal plans and shopping lists.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#features">Explore features</a>
-          <a class="button secondary" href="/support">Contact support</a>
+        <div class="hero-actions" aria-label="Primary actions">
+          <span class="button primary button-static">Coming soon on Android and iOS</span>
+          <a class="button secondary" href="/privacy">View privacy policy</a>
         </div>
-        <p class="availability">Coming soon on Android and iOS.</p>
+        <p class="trust-note">No medical advice. No diet promises. Just practical planning support.</p>
       </div>
+
       <div class="app-preview" aria-label="VivaPantry app preview">
         <div class="phone-frame">
           <div class="phone-header">
@@ -49,116 +50,146 @@
             <strong>This week</strong>
             <span></span>
           </div>
-          <div class="preview-card green">
-            <small>Meal plan</small>
-            <strong>Chicken rice bowls</strong>
-            <span>Uses pantry rice, greens, and sauce</span>
+          <div class="preview-card">
+            <small>Suggested meal</small>
+            <strong>Rice bowls with greens</strong>
+            <span>Built from pantry staples and household preferences</span>
           </div>
-          <div class="preview-grid">
+          <div class="preview-list">
             <div>
-              <small>Pantry</small>
-              <strong>42</strong>
-              <span>tracked items</span>
+              <span>Receipt scan</span>
+              <strong>8 prices saved</strong>
             </div>
             <div>
-              <small>List</small>
-              <strong>12</strong>
-              <span>to buy</span>
+              <span>Pantry check</span>
+              <strong>4 items running low</strong>
             </div>
-          </div>
-          <div class="receipt-strip">
-            <span>Receipt scanned</span>
-            <strong>8 prices saved</strong>
+            <div>
+              <span>Shopping list</span>
+              <strong>12 focused items</strong>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section id="how-it-works" class="section">
       <div class="section-heading">
-        <p class="eyebrow">The core loop</p>
-        <h2>From receipt to next meal</h2>
+        <p class="eyebrow">From receipt to meal plan</p>
+        <h2>A practical loop for the food you already buy.</h2>
         <p>
-          VivaPantry is designed around the way food actually moves through a home: what you bought,
-          what you have, what you can cook, and what you still need.
+          VivaPantry connects the everyday steps of household food planning, from what came home
+          in the grocery bag to what should go on next week's list.
         </p>
       </div>
-      <div class="loop">
+
+      <div class="flow" aria-label="VivaPantry core loop">
         <article>
-          <span>1</span>
-          <h3>Receipts</h3>
-          <p>Scan receipts to capture purchases and update item price history.</p>
+          <span>Receipts</span>
+          <p>Scan receipts to capture purchases and prices.</p>
         </article>
         <article>
-          <span>2</span>
-          <h3>Prices</h3>
-          <p>Track grocery prices over time so shopping decisions stay grounded.</p>
+          <span>Prices</span>
+          <p>Keep grocery price history organized over time.</p>
         </article>
         <article>
-          <span>3</span>
-          <h3>Pantry</h3>
-          <p>Keep a living view of what is in stock, low, or running out.</p>
+          <span>Pantry</span>
+          <p>See what is stocked, low, or likely to be duplicated.</p>
         </article>
         <article>
-          <span>4</span>
-          <h3>Meal plans</h3>
-          <p>Generate practical meal plans from preferences, recipes, and pantry context.</p>
+          <span>Meal Plans</span>
+          <p>Generate weekly meal ideas from recipes and preferences.</p>
         </article>
         <article>
-          <span>5</span>
-          <h3>Shopping lists</h3>
-          <p>Turn planned meals into focused grocery lists for the week ahead.</p>
+          <span>Shopping Lists</span>
+          <p>Create shopping lists from pantry gaps and planned meals.</p>
         </article>
+      </div>
+
+      <div class="benefit-strip">
+        <p>Reduce duplicate purchases and food waste with a clearer view of what you have and what you need.</p>
       </div>
     </section>
 
-    <section id="features" class="section muted">
+    <section id="features" class="section section-soft">
       <div class="section-heading">
         <p class="eyebrow">Features</p>
-        <h2>Built for everyday food planning</h2>
+        <h2>Everything a weekly planning routine needs.</h2>
       </div>
       <div class="feature-grid">
         <article class="feature-card">
+          <span class="feature-icon">01</span>
           <h3>Pantry tracking</h3>
-          <p>Track pantry items, quantities, low-stock status, and household staples.</p>
+          <p>Keep pantry staples, quantities, and low-stock items organized so planning starts with what is already at home.</p>
         </article>
         <article class="feature-card">
+          <span class="feature-icon">02</span>
           <h3>Receipt scanning</h3>
-          <p>Capture receipt details and use them to update groceries, prices, and pantry records.</p>
+          <p>Turn receipts into useful grocery records for purchases, prices, and pantry updates.</p>
         </article>
         <article class="feature-card">
-          <h3>Grocery lists</h3>
-          <p>Build clear shopping lists from meal plans, pantry gaps, and manual additions.</p>
-        </article>
-        <article class="feature-card">
+          <span class="feature-icon">03</span>
           <h3>AI meal planning</h3>
-          <p>Generate weekly meal ideas using preferences, recipes, budget goals, and pantry context.</p>
+          <p>Create practical meal ideas from your recipes, preferences, pantry context, and weekly goals.</p>
         </article>
         <article class="feature-card">
-          <h3>Recipes</h3>
-          <p>Save recipes, ingredients, instructions, and links so meals become actionable.</p>
+          <span class="feature-icon">04</span>
+          <h3>Grocery lists</h3>
+          <p>Build focused shopping lists from planned meals and pantry gaps instead of starting from scratch.</p>
         </article>
         <article class="feature-card">
+          <span class="feature-icon">05</span>
+          <h3>Recipe organization</h3>
+          <p>Save recipes, ingredients, and instructions so favorite meals can become reusable planning building blocks.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">06</span>
           <h3>Household preferences</h3>
-          <p>Plan around household size, dietary needs, cooking time, goals, and regional settings.</p>
+          <p>Plan around household size, cooking time, dietary notes, regional settings, and practical weeknight needs.</p>
         </article>
       </div>
     </section>
 
-    <section class="cta-band">
-      <div>
-        <p class="eyebrow">Coming soon</p>
-        <h2>VivaPantry is preparing for Android and iOS.</h2>
-        <p>We will add official store links when the app is available.</p>
+    <section class="section readiness">
+      <div class="readiness-card">
+        <div>
+          <p class="eyebrow">App store readiness</p>
+          <h2>Built for real households.</h2>
+          <p>
+            VivaPantry is designed for weekly planning routines, not one-off inspiration. It keeps
+            grocery and meal data organized so the next shopping decision is easier to make.
+          </p>
+        </div>
+        <ul class="check-list">
+          <li>Designed for weekly planning</li>
+          <li>Supports household preferences</li>
+          <li>Helps reduce food waste</li>
+          <li>Keeps grocery and meal data organized</li>
+          <li>Privacy and account deletion pages available</li>
+        </ul>
       </div>
-      <a class="button primary" href="/support">Get in touch</a>
+    </section>
+
+    <section class="trust-section">
+      <div class="section-heading compact">
+        <p class="eyebrow">Trust and compliance</p>
+        <h2>Clear policies before launch.</h2>
+        <p>Review how VivaPantry handles privacy, terms, support, and account deletion.</p>
+      </div>
+      <div class="trust-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/support">Support</a>
+        <a href="/delete-account">Delete Account</a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div>
       <strong>VivaPantry</strong>
-      <p>AI-powered grocery, pantry, recipe, receipt scanning, and meal planning.</p>
+      <p>Plan meals, track groceries, reduce waste, and save money with practical household planning.</p>
+      <p>Contact: <a href="mailto:vivapantry@outlook.com">vivapantry@outlook.com</a></p>
     </div>
     <nav aria-label="Footer navigation">
       <a href="/privacy">Privacy</a>
@@ -166,7 +197,7 @@
       <a href="/support">Support</a>
       <a href="/delete-account">Delete Account</a>
     </nav>
-    <p class="copyright">&copy; <span data-year></span> VivaPantry. All rights reserved.</p>
+    <p class="copyright">&copy; 2026 VivaPantry. All rights reserved.</p>
   </footer>
 
   <script src="/script.js"></script>
