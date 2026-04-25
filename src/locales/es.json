@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "homeAria": "Inicio de VivaPantry",
+    "primary": "Navegación principal",
+    "menu": "Menú",
+    "features": "Funciones",
+    "howItWorks": "Cómo funciona",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "support": "Soporte",
+    "deleteAccount": "Eliminar cuenta"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "pt-BR": "Português Brasil",
+    "es": "Español"
+  },
+  "meta": {
+    "home": {
+      "title": "VivaPantry | Planifica comidas. Controla compras. Desperdicia menos.",
+      "description": "VivaPantry ayuda a los hogares a convertir recibos, despensa, recetas y preferencias en mejores planes de comida y listas de compras."
+    },
+    "privacy": {
+      "title": "Política de Privacidad | VivaPantry",
+      "description": "Política de privacidad y prácticas de datos de VivaPantry."
+    },
+    "terms": {
+      "title": "Términos de Uso | VivaPantry",
+      "description": "Términos de VivaPantry para usar la app de compras, despensa, recetas y planificación de comidas."
+    },
+    "support": {
+      "title": "Soporte | VivaPantry",
+      "description": "Ayuda con inicio de sesión, recibos, planes de comida, listas de compras y eliminación de cuenta en VivaPantry."
+    },
+    "delete-account": {
+      "title": "Eliminar cuenta | VivaPantry",
+      "description": "Cómo solicitar la eliminación de tu cuenta VivaPantry y los datos de la app."
+    },
+    "404": {
+      "title": "Página no encontrada | VivaPantry",
+      "description": "No se pudo encontrar la página solicitada de VivaPantry."
+    }
+  },
+  "home": {
+    "eyebrow": "Compras y planificación de comidas con IA",
+    "heroTitle": "Planifica comidas. Controla compras. Desperdicia menos.",
+    "heroText": "VivaPantry ayuda a los hogares a convertir recibos, despensa, recetas y preferencias en mejores planes de comida y listas de compras.",
+    "primaryActions": "Acciones principales",
+    "primaryCta": "Próximamente en Android e iOS",
+    "secondaryCta": "Ver política de privacidad",
+    "trustNote": "Sin consejos médicos. Sin promesas de dieta. Solo apoyo práctico para planificar.",
+    "previewAria": "Vista previa de la app VivaPantry",
+    "previewThisWeek": "Esta semana",
+    "previewSuggestedMeal": "Comida sugerida",
+    "previewMeal": "Tazones de arroz con verduras",
+    "previewMealText": "Creado con básicos de despensa y preferencias del hogar",
+    "previewReceipt": "Escaneo de recibo",
+    "previewReceiptValue": "8 precios guardados",
+    "previewPantry": "Revisión de despensa",
+    "previewPantryValue": "4 artículos bajos",
+    "previewShopping": "Lista de compras",
+    "previewShoppingValue": "12 artículos enfocados",
+    "loopEyebrow": "Del recibo al plan de comida",
+    "loopTitle": "Un ciclo práctico para los alimentos que ya compras.",
+    "loopText": "VivaPantry conecta los pasos diarios de la planificación de alimentos del hogar, desde lo que llegó en la bolsa del supermercado hasta lo que debe ir en la próxima lista.",
+    "loopAria": "Ciclo principal de VivaPantry",
+    "loopBenefit": "Reduce compras duplicadas y desperdicio de alimentos con una visión más clara de lo que tienes y lo que necesitas.",
+    "loop": {
+      "receipts": {
+        "title": "Recibos",
+        "text": "Escanea recibos para capturar compras y precios."
+      },
+      "prices": {
+        "title": "Precios",
+        "text": "Mantén organizado el historial de precios del supermercado."
+      },
+      "pantry": {
+        "title": "Despensa",
+        "text": "Ve qué hay en existencia, qué está bajo o qué podrías comprar duplicado."
+      },
+      "mealPlans": {
+        "title": "Planes de comida",
+        "text": "Genera ideas semanales a partir de recetas y preferencias."
+      },
+      "shoppingLists": {
+        "title": "Listas de compras",
+        "text": "Crea listas desde faltantes de despensa y comidas planificadas."
+      }
+    },
+    "featuresEyebrow": "Funciones",
+    "featuresTitle": "Todo lo que necesita una rutina semanal de planificación.",
+    "features": {
+      "pantryTracking": {
+        "title": "Control de despensa",
+        "text": "Mantén básicos, cantidades y artículos bajos organizados para planificar con lo que ya tienes en casa."
+      },
+      "receiptScanning": {
+        "title": "Escaneo de recibos",
+        "text": "Convierte recibos en registros útiles de compras, precios y actualizaciones de despensa."
+      },
+      "aiMealPlanning": {
+        "title": "Planificación con IA",
+        "text": "Crea ideas prácticas de comidas con tus recetas, preferencias, despensa y objetivos semanales."
+      },
+      "groceryLists": {
+        "title": "Listas de compras",
+        "text": "Arma listas enfocadas desde comidas planificadas y faltantes de despensa en vez de empezar desde cero."
+      },
+      "recipes": {
+        "title": "Organización de recetas",
+        "text": "Guarda recetas, ingredientes e instrucciones para reutilizar tus comidas favoritas al planificar."
+      },
+      "householdPreferences": {
+        "title": "Preferencias del hogar",
+        "text": "Planifica según tamaño del hogar, tiempo de cocina, notas dietarias, región y necesidades de la semana."
+      }
+    },
+    "readinessEyebrow": "Listo para tiendas de apps",
+    "readinessTitle": "Creado para hogares reales.",
+    "readinessText": "VivaPantry está diseñado para rutinas semanales, no solo para inspiración ocasional. Mantiene datos de compras y comidas organizados para facilitar la próxima decisión.",
+    "readiness": {
+      "weeklyPlanning": "Diseñado para planificación semanal",
+      "householdPreferences": "Soporta preferencias del hogar",
+      "reduceWaste": "Ayuda a reducir el desperdicio de alimentos",
+      "organizedData": "Mantiene organizados los datos de compras y comidas",
+      "policies": "Páginas de privacidad y eliminación de cuenta disponibles"
+    },
+    "trustEyebrow": "Confianza y cumplimiento",
+    "trustTitle": "Políticas claras antes del lanzamiento.",
+    "trustText": "Revisa cómo VivaPantry maneja privacidad, términos, soporte y eliminación de cuenta."
+  },
+  "privacy": {
+    "eyebrow": "Política de Privacidad",
+    "title": "Tus datos deben apoyar tu cocina, no sorprenderte.",
+    "lead": "Esta política explica qué recopila VivaPantry, por qué lo usamos y cómo contactarnos sobre privacidad o eliminación de datos.",
+    "sections": "Información que recopilamos||VivaPantry puede recopilar y procesar información que proporcionas o generas al usar la app, incluyendo:||Información de cuenta, como correo electrónico y detalles de autenticación.|Preferencias del hogar, notas dietarias, configuración regional, objetivos de cocina y preferencias de planificación.|Artículos de despensa, productos, cantidades, listas de compras, recetas, ingredientes e instrucciones.|Recibos, imágenes de recibos, artículos extraídos, historial de precios y registros de compras relacionados.|Registros de uso, diagnósticos, analíticas de la app, registros de errores y metadatos de solicitudes de IA usados para operar y mejorar el servicio.|||Cómo usamos la información||Usamos datos de la app para ofrecer funciones principales: control de despensa, escaneo de recibos, listas de compras, organización de recetas, planificación con IA, soporte, seguridad, depuración y mejora del servicio.|||Proveedores de servicio||VivaPantry usa Supabase para servicios backend como autenticación, base de datos, almacenamiento y funciones serverless. Podemos usar la API de OpenAI para procesar solicitudes de planificación con IA o extracción. También podemos usar herramientas de analíticas y registro de errores para entender la confiabilidad y diagnosticar problemas.|||Procesamiento con IA||Cuando usas funciones con IA, contexto relevante de despensa, recetas, preferencias, recibos o planificación puede enviarse a proveedores de IA para generar resultados. Buscamos enviar solo la información necesaria para la función solicitada.|||Retención y eliminación de datos||Conservamos información según sea necesario para proporcionar la app, cumplir obligaciones legales, resolver problemas y mantener la seguridad. Puedes solicitar la eliminación de cuenta y datos contactándonos. La eliminación puede incluir datos de cuenta, artículos de despensa, recetas, listas de compras, recibos, preferencias y datos relacionados de la app.|||Contacto||Para preguntas de privacidad o solicitudes de eliminación, escribe a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a>."
+  },
+  "terms": {
+    "eyebrow": "Términos de Uso",
+    "title": "Términos para planificación práctica del hogar.",
+    "lead": "Estos términos describen las reglas básicas para usar VivaPantry. Al usar la app o el sitio, aceptas usar el servicio responsablemente.",
+    "sections": "Uso del servicio||VivaPantry ayuda con flujos de compras, despensa, recetas, escaneo de recibos y planificación de comidas. Eres responsable de la información que ingresas y de las decisiones que tomas a partir de las sugerencias de la app.|||Responsabilidad de la cuenta||Eres responsable de mantener el acceso a tu cuenta, proteger tus datos de inicio de sesión y asegurar que la información del perfil del hogar sea correcta.|||Sin diagnóstico médico o nutricional||VivaPantry solo ofrece apoyo de planificación. No ofrece consejo médico, diagnóstico nutricional, diagnóstico de alergias, recomendaciones de tratamiento ni resultados de salud garantizados.|||Alergias y restricciones alimentarias||Eres responsable de revisar recetas, ingredientes, etiquetas, alérgenos, restricciones alimentarias y decisiones de salud antes de comprar, cocinar o comer.|||Sugerencias de IA y de la app||Las ideas de comidas generadas por IA, listas de compras, extracción de recibos y sugerencias de despensa pueden estar incompletas o ser incorrectas. Revisa los resultados antes de confiar en ellos.|||Suscripciones||VivaPantry puede agregar suscripciones pagas o funciones premium en el futuro. Cualquier función paga mostrará precios y términos antes de la compra.|||Cambios y contacto||Podemos actualizar estos términos a medida que el producto evolucione. Las preguntas pueden enviarse a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a>."
+  },
+  "support": {
+    "eyebrow": "Soporte",
+    "title": "Estamos aquí para ayudarte.",
+    "lead": "Para soporte de VivaPantry, escribe a support@vivapantry.com e incluye el correo de la cuenta que usas en la app.",
+    "sections": "Contacto||Escribe a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> para ayuda con la app, tu cuenta o solicitudes de eliminación de datos.|||Ayuda con inicio de sesión||Si no puedes iniciar sesión, incluye el correo usado para tu cuenta VivaPantry y una breve descripción de lo ocurrido. No envíes contraseñas.|||Recibos||Para problemas de escaneo de recibos, describe la tienda, el formato del recibo y si el problema fue la carga de imagen, extracción de artículos o coincidencia de precios.|||Planes de comida||Para problemas con planes, indica si el plan fue generado por IA o creado manualmente, y qué resultado esperabas.|||Listas de compras||Para problemas con listas, menciona si el artículo vino de una receta, plan de comida, recibo o entrada manual.|||Eliminación de cuenta||Puedes solicitar la eliminación desde la página Eliminar cuenta o enviando un correo a soporte con el email de tu cuenta."
+  },
+  "delete-account": {
+    "eyebrow": "Eliminar cuenta",
+    "title": "Solicita la eliminación de tu cuenta y datos.",
+    "lead": "Puedes pedir por email que eliminemos tu cuenta VivaPantry y los datos relacionados de la app.",
+    "sections": "Cómo solicitar la eliminación||Envía un correo a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> con el asunto “Eliminar mi cuenta VivaPantry”.|||Información requerida||Incluye el correo de la cuenta usado en la app para que podamos identificar la cuenta correcta.|||Qué puede eliminarse||La eliminación puede incluir tu cuenta, artículos de despensa, recetas, listas de compras, recibos, imágenes de recibos, preferencias, datos del hogar y registros relacionados de la app.|||Procesamiento||Podemos necesitar verificar la titularidad de la cuenta antes de completar la eliminación. Algunos registros pueden conservarse si es necesario por razones legales, de seguridad, prevención de fraude u operación."
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Página no encontrada.",
+    "lead": "La página solicitada no existe o fue movida.",
+    "cta": "Ir al inicio"
+  },
+  "footer": {
+    "tagline": "Planifica comidas, controla compras, reduce desperdicio y ahorra dinero con planificación práctica del hogar.",
+    "contact": "Contacto:",
+    "navigation": "Navegación del pie de página",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "support": "Soporte",
+    "deleteAccount": "Eliminar cuenta",
+    "copyright": "© {year} VivaPantry. Todos los derechos reservados."
+  }
+}
