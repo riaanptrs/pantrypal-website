@@ -151,9 +151,9 @@
   },
   "delete-account": {
     "eyebrow": "Eliminar cuenta",
-    "title": "Solicita la eliminación de tu cuenta y datos.",
-    "lead": "Puedes pedir por email que eliminemos tu cuenta VivaPantry y los datos relacionados de la app.",
-    "sections": "Cómo solicitar la eliminación||Envía un correo a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> con el asunto “Eliminar mi cuenta VivaPantry”.|||Información requerida||Incluye el correo de la cuenta usado en la app para que podamos identificar la cuenta correcta.|||Qué puede eliminarse||La eliminación puede incluir tu cuenta, artículos de despensa, recetas, listas de compras, recibos, imágenes de recibos, preferencias, datos del hogar y registros relacionados de la app.|||Procesamiento||Podemos necesitar verificar la titularidad de la cuenta antes de completar la eliminación. Algunos registros pueden conservarse si es necesario por razones legales, de seguridad, prevención de fraude u operación."
+    "title": "Eliminación de Cuenta VivaPantry",
+    "lead": "Puedes solicitar la eliminación de tu cuenta VivaPantry y los datos asociados a ella.",
+    "sections": "Cómo solicitar la eliminación||1. Envía un correo a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> con el asunto \"Eliminar mi cuenta\".<br>2. Incluye en el correo la dirección usada para crear tu cuenta en VivaPantry.<br>3. Nuestro equipo confirmará la recepción y procesará la solicitud.|||Datos que se eliminarán||La solicitud de eliminación cubre estas categorías:||Información de la cuenta|Datos de perfil y preferencias|Artículos de despensa|Listas de compras|Recetas creadas o guardadas|Planes de comida|Datos asociados al uso de la aplicación|||Datos que pueden conservarse temporalmente||Algunos registros técnicos, registros de seguridad, datos de prevención de fraude o información necesaria para cumplir obligaciones legales pueden conservarse por un período limitado.|||Tiempo de procesamiento||Después de la confirmación de la solicitud, la eliminación de la cuenta y los datos se procesará en un plazo de hasta 30 días.|||Preguntas||Si tienes preguntas, contacta por correo a <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a>.|||English version||This page is also available in <a href=\"/en/delete-account/\">English</a>."
   },
   "notFound": {
     "eyebrow": "404",
