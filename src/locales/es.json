@@ -72,9 +72,9 @@
       }
     },
     "primaryActions": "Acciones principales",
-    "primaryCta": "Próximamente en Android e iOS",
+    "primaryCta": "Unirme a la lista de lanzamiento",
     "secondaryCta": "Ver política de privacidad",
-    "trustNote": "Sin consejos médicos. Sin promesas de dieta. Solo apoyo práctico para planificar.",
+    "trustNote": "Sin consejos médicos. Sin promesas de dieta. Apoyo práctico para la planificación del hogar.",
     "previewAria": "Vista previa de la app VivaPantry",
     "previewThisWeek": "Esta semana",
     "previewSuggestedMeal": "Comida sugerida",
@@ -142,14 +142,15 @@
       }
     },
     "readinessEyebrow": "Listo para tiendas de apps",
-    "readinessTitle": "Creado para hogares reales.",
+    "readinessTitle": "Creado para planificación semanal, compras reales y hogares reales.",
     "readinessText": "VivaPantry está diseñado para rutinas semanales, no solo para inspiración ocasional. Mantiene datos de compras y comidas organizados para facilitar la próxima decisión.",
+    "readinessCta": "Próximamente en Android e iOS",
+    "readinessSecondary": "Leer la política de privacidad",
     "readiness": {
-      "weeklyPlanning": "Diseñado para planificación semanal",
-      "householdPreferences": "Soporta preferencias del hogar",
-      "reduceWaste": "Ayuda a reducir el desperdicio de alimentos",
-      "organizedData": "Mantiene organizados los datos de compras y comidas",
-      "policies": "Páginas de privacidad y eliminación de cuenta disponibles"
+      "weeklyPlanning": "Diseñado para planificación de comidas con contexto de despensa",
+      "receiptScans": "Los recibos pueden mejorar la despensa y el historial de precios",
+      "shoppingLists": "Las listas se enfocan en lo que todavía necesitas",
+      "householdPreferences": "Las preferencias del hogar guían sugerencias más inteligentes"
     },
     "trustEyebrow": "Confianza y cumplimiento",
     "trustTitle": "Políticas claras antes del lanzamiento.",

@@ -164,18 +164,18 @@
 
   function renderHeader(locale, page, t) {
     const header = createElement('header', { className: 'site-header' });
+    const inner = createElement('div', { className: 'site-header-inner' });
     const brand = append(createElement('a', {
       className: 'brand',
       href: `/${locale}/`,
       ariaLabel: t('nav.homeAria'),
     }), [
       createElement('img', {
-        className: 'brand-mark',
-        src: '/assets/Mainicon.png',
-        alt: '',
+        className: 'site-logo',
+        src: '/assets/images/vivapantry-logo.svg',
+        alt: 'VivaPantry logo',
         decoding: 'async',
       }),
-      createElement('span', { text: 'VivaPantry' }),
     ]);
 
     const toggle = createElement('button', {
@@ -187,23 +187,19 @@
     toggle.setAttribute('aria-controls', 'site-nav');
 
     const nav = createElement('nav', { className: 'site-nav', id: 'site-nav', ariaLabel: t('nav.primary') });
-    const links = page === ''
-      ? [
-          ['#features', t('nav.features')],
-          ['#how-it-works', t('nav.howItWorks')],
-          [`/${locale}/support`, t('nav.support')],
-        ]
-      : [
-          [`/${locale}/`, t('nav.home')],
-          [`/${locale}/privacy`, t('nav.privacy')],
-          [`/${locale}/terms`, t('nav.terms')],
-          [`/${locale}/support`, t('nav.support')],
-          [`/${locale}/delete-account`, t('nav.deleteAccount')],
-        ];
+    const links = [
+      [`/${locale}/`, t('nav.home')],
+      [`/${locale}/#features`, t('nav.features')],
+      [`/${locale}/#how-it-works`, t('nav.howItWorks')],
+      [`/${locale}/privacy`, t('nav.privacy')],
+      [`/${locale}/terms`, t('nav.terms')],
+      [`/${locale}/support`, t('nav.support')],
+      [`/${locale}/delete-account`, t('nav.deleteAccount')],
+    ];
 
     links.forEach(([href, label]) => {
       const link = createElement('a', { href, text: label });
-      const targetPage = href.split('/').filter(Boolean)[1] || '';
+      const targetPage = href.split('#')[0].split('/').filter(Boolean)[1] || '';
       if (targetPage === page) link.setAttribute('aria-current', 'page');
       nav.appendChild(link);
     });
@@ -231,14 +227,21 @@
       toggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    append(header, [brand, toggle, nav, switcher]);
+    append(inner, [brand, toggle, nav, switcher]);
+    header.appendChild(inner);
     return header;
   }
 
   function renderFooter(locale, t) {
     const footer = createElement('footer', { className: 'site-footer' });
-    const copy = append(createElement('div'), [
-      createElement('strong', { text: 'VivaPantry' }),
+    const copy = append(createElement('div', { className: 'footer-brand' }), [
+      createElement('img', {
+        className: 'site-logo',
+        src: '/assets/images/vivapantry-logo.svg',
+        alt: 'VivaPantry logo',
+        loading: 'lazy',
+        decoding: 'async',
+      }),
       createElement('p', { text: t('footer.tagline') }),
       createElement('p', {
         html: `${t('footer.contact')} <a href="mailto:support@vivapantry.com">support@vivapantry.com</a>`,
@@ -266,87 +269,73 @@
     return footer;
   }
 
+  const loopIconMap = {
+    receipts: 'receipt-scan.svg',
+    prices: 'price-tracking.svg',
+    pantry: 'pantry.svg',
+    mealPlans: 'meal-plan.svg',
+    shoppingLists: 'shopping-list.svg',
+  };
+
+  const featureIconMap = {
+    pantryTracking: 'pantry.svg',
+    receiptScanning: 'receipt-scan.svg',
+    aiMealPlanning: 'ai-spark.svg',
+    groceryLists: 'shopping-list.svg',
+    recipes: 'recipes.svg',
+    householdPreferences: 'household.svg',
+  };
+
+  function iconCard(iconName, title, text) {
+    return append(createElement('article', { className: 'icon-card' }), [
+      createElement('img', {
+        className: 'card-icon',
+        src: `/assets/icons/${iconName}`,
+        alt: '',
+        loading: 'lazy',
+        decoding: 'async',
+      }),
+      createElement('h3', { text: title }),
+      createElement('p', { text }),
+    ]);
+  }
+
   function renderHome(locale, t) {
     const main = createElement('main');
     const hero = append(createElement('section', { className: 'hero' }), [
       append(createElement('div', { className: 'hero-copy' }), [
-        append(createElement('div', { className: 'hero-brand' }), [
-          createElement('img', {
-            className: 'hero-icon',
-            src: '/assets/Mainicon.png',
-            alt: t('home.logoAlt'),
-            decoding: 'async',
-          }),
-          createElement('span', { className: 'hero-wordmark', html: '<span>Viva</span>Pantry' }),
-        ]),
-        createElement('p', { className: 'eyebrow', text: t('home.eyebrow') }),
+        createElement('p', { className: 'hero-eyebrow', text: t('home.eyebrow') }),
         createElement('h1', { text: t('home.heroTitle') }),
         createElement('p', { className: 'hero-text', text: t('home.heroText') }),
-        append(createElement('div', { className: 'hero-flow-card', ariaLabel: t('home.flowAria') }),
-          ['plan', 'shop', 'store', 'cook', 'repeat'].map((key, index, items) => {
-            const item = append(createElement('div', { className: 'hero-flow-item' }), [
-              createElement('span', { className: 'hero-flow-icon', text: t(`home.flow.${key}.icon`) }),
-              createElement('strong', { text: t(`home.flow.${key}.label`) }),
-            ]);
-            if (index === items.length - 1) return item;
-            return append(createElement('div', { className: 'hero-flow-step' }), [
-              item,
-              createElement('span', { className: 'hero-flow-arrow', text: '->' }),
-            ]);
-          })
-        ),
         append(createElement('div', { className: 'hero-actions', ariaLabel: t('home.primaryActions') }), [
-          createElement('span', { className: 'button primary button-static', text: t('home.primaryCta') }),
+          createElement('a', { className: 'button primary', href: 'mailto:support@vivapantry.com?subject=Join%20the%20VivaPantry%20launch%20list', text: t('home.primaryCta') }),
           createElement('a', { className: 'button secondary', href: `/${locale}/privacy`, text: t('home.secondaryCta') }),
         ]),
         createElement('p', { className: 'trust-note', text: t('home.trustNote') }),
       ]),
-      append(createElement('div', { className: 'app-preview', ariaLabel: t('home.previewAria') }), [
-        append(createElement('div', { className: 'phone-frame' }), [
-          append(createElement('div', { className: 'phone-header' }), [
-            createElement('img', {
-              src: '/assets/Mainicon.png',
-              alt: '',
-              decoding: 'async',
-            }),
-            createElement('strong', { text: t('home.previewThisWeek') }),
-            createElement('span'),
-          ]),
-          append(createElement('div', { className: 'preview-card' }), [
-            createElement('small', { text: t('home.previewSuggestedMeal') }),
-            createElement('strong', { text: t('home.previewMeal') }),
-            createElement('span', { text: t('home.previewMealText') }),
-          ]),
-          append(createElement('div', { className: 'preview-list' }), [
-            previewRow(t('home.previewReceipt'), t('home.previewReceiptValue')),
-            previewRow(t('home.previewPantry'), t('home.previewPantryValue')),
-            previewRow(t('home.previewShopping'), t('home.previewShoppingValue')),
-          ]),
-        ]),
-      ]),
+      createElement('img', {
+        className: 'hero-image',
+        src: '/assets/images/hero-vivapantry.png',
+        alt: 'VivaPantry app showing meal planning, pantry checks, receipt scan, and shopping list',
+        decoding: 'async',
+      }),
     ]);
 
-    const how = append(createElement('section', { className: 'section how-section', id: 'how-it-works' }), [
+    const how = append(createElement('section', { className: 'loop-section', id: 'how-it-works' }), [
       append(createElement('div', { className: 'section-heading' }), [
-        append(createElement('div', { className: 'section-kicker' }), [
-          createElement('img', {
-            src: '/assets/Mainicon.png',
-            alt: '',
-            loading: 'lazy',
-            decoding: 'async',
-          }),
-          createElement('p', { className: 'eyebrow', text: t('home.loopEyebrow') }),
-        ]),
         createElement('h2', { text: t('home.loopTitle') }),
         createElement('p', { className: 'section-lead', text: t('home.loopText') }),
       ]),
-      append(createElement('div', { className: 'flow', ariaLabel: t('home.loopAria') }),
-        ['receipts', 'prices', 'pantry', 'mealPlans', 'shoppingLists'].map((key, index) =>
-          append(createElement('article'), [
-            createElement('span', { text: String(index + 1).padStart(2, '0') }),
-            createElement('h3', { text: t(`home.loop.${key}.title`) }),
-            createElement('p', { text: t(`home.loop.${key}.text`) }),
-          ])
+      createElement('img', {
+        className: 'loop-image',
+        src: '/assets/images/viva-loop.png',
+        alt: 'VivaPantry loop from receipts to pantry, meal plan, grocery list, and price memory',
+        loading: 'lazy',
+        decoding: 'async',
+      }),
+      append(createElement('div', { className: 'loop-grid', ariaLabel: t('home.loopAria') }),
+        ['receipts', 'prices', 'pantry', 'mealPlans', 'shoppingLists'].map((key) =>
+          iconCard(loopIconMap[key], t(`home.loop.${key}.title`), t(`home.loop.${key}.text`))
         )
       ),
       append(createElement('div', { className: 'benefit-strip' }), [
@@ -356,58 +345,36 @@
 
     const features = append(createElement('section', { className: 'section section-soft', id: 'features' }), [
       append(createElement('div', { className: 'section-heading' }), [
-        createElement('p', { className: 'eyebrow', text: t('home.featuresEyebrow') }),
+        createElement('p', { className: 'hero-eyebrow', text: t('home.featuresEyebrow') }),
         createElement('h2', { text: t('home.featuresTitle') }),
       ]),
       append(createElement('div', { className: 'feature-grid' }),
-        ['pantryTracking', 'receiptScanning', 'aiMealPlanning', 'groceryLists', 'recipes', 'householdPreferences'].map((key, index) =>
-          append(createElement('article', { className: 'feature-card' }), [
-            createElement('span', { className: 'feature-icon', text: String(index + 1).padStart(2, '0') }),
-            createElement('h3', { text: t(`home.features.${key}.title`) }),
-            createElement('p', { text: t(`home.features.${key}.text`) }),
-          ])
+        ['pantryTracking', 'receiptScanning', 'aiMealPlanning', 'groceryLists', 'recipes', 'householdPreferences'].map((key) =>
+          iconCard(featureIconMap[key], t(`home.features.${key}.title`), t(`home.features.${key}.text`))
         )
       ),
     ]);
 
-    const readiness = append(createElement('section', { className: 'section readiness' }), [
+    const readiness = append(createElement('section', { className: 'readiness' }), [
       append(createElement('div', { className: 'readiness-card' }), [
         append(createElement('div'), [
-          createElement('p', { className: 'eyebrow', text: t('home.readinessEyebrow') }),
           createElement('h2', { text: t('home.readinessTitle') }),
           createElement('p', { text: t('home.readinessText') }),
+          append(createElement('div', { className: 'readiness-actions' }), [
+            createElement('span', { className: 'button primary button-static', text: t('home.readinessCta') }),
+            createElement('a', { className: 'button secondary', href: `/${locale}/privacy`, text: t('home.readinessSecondary') }),
+          ]),
         ]),
         append(createElement('ul', { className: 'check-list' }),
-          ['weeklyPlanning', 'householdPreferences', 'reduceWaste', 'organizedData', 'policies'].map((key) =>
+          ['weeklyPlanning', 'receiptScans', 'shoppingLists', 'householdPreferences'].map((key) =>
             createElement('li', { text: t(`home.readiness.${key}`) })
           )
         ),
       ]),
     ]);
 
-    const trust = append(createElement('section', { className: 'trust-section' }), [
-      append(createElement('div', { className: 'section-heading compact' }), [
-        createElement('p', { className: 'eyebrow', text: t('home.trustEyebrow') }),
-        createElement('h2', { text: t('home.trustTitle') }),
-        createElement('p', { text: t('home.trustText') }),
-      ]),
-      append(createElement('div', { className: 'trust-links' }), [
-        createElement('a', { href: `/${locale}/privacy`, text: t('footer.privacy') }),
-        createElement('a', { href: `/${locale}/terms`, text: t('footer.terms') }),
-        createElement('a', { href: `/${locale}/support`, text: t('footer.support') }),
-        createElement('a', { href: `/${locale}/delete-account`, text: t('footer.deleteAccount') }),
-      ]),
-    ]);
-
-    append(main, [hero, how, features, readiness, trust]);
+    append(main, [hero, how, features, readiness]);
     return main;
-  }
-
-  function previewRow(label, value) {
-    return append(createElement('div'), [
-      createElement('span', { text: label }),
-      createElement('strong', { text: value }),
-    ]);
   }
 
   function renderLegalPage(page, t) {
@@ -421,12 +388,11 @@
         ]),
         append(createElement('div', { className: 'page-brand-card' }), [
           createElement('img', {
-            src: '/assets/Mainicon.png',
-            alt: t('home.logoAlt'),
+            src: '/assets/images/vivapantry-logo.svg',
+            alt: 'VivaPantry logo',
             loading: 'lazy',
             decoding: 'async',
           }),
-          createElement('strong', { html: '<span>Viva</span>Pantry' }),
           createElement('p', { text: t('footer.tagline') }),
         ]),
       ]),
@@ -497,10 +463,26 @@
       const targetLocale = firstSegment && unsupportedLocalePattern.test(firstSegment)
         ? defaultLocale
         : detectLocale();
+      const isUnsupportedLocalePath = firstSegment && unsupportedLocalePattern.test(firstSegment);
+      if (page !== null && !isUnsupportedLocalePath) {
+        const dictionary = await loadDictionary(defaultLocale);
+        const t = tFactory(dictionary);
+        window.VivaPantryI18n.t = t;
+        setMetadata(defaultLocale, page, t);
+
+        const app = document.querySelector('#app') || document.body;
+        app.innerHTML = '';
+        append(app, [
+          renderHeader(defaultLocale, page || '', t),
+          page === '' ? renderHome(defaultLocale, t) : renderLegalPage(page, t),
+          renderFooter(defaultLocale, t),
+        ]);
+        return;
+      }
       const shouldRenderDetectedNotFound =
         page === null &&
         window.location.pathname !== '/' &&
-        !(firstSegment && unsupportedLocalePattern.test(firstSegment));
+        !isUnsupportedLocalePath;
 
       if (shouldRenderDetectedNotFound) {
         const dictionary = await loadDictionary(targetLocale);

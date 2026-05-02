@@ -19,8 +19,8 @@
   },
   "meta": {
     "home": {
-      "title": "VivaPantry | Plan meals and shopping in 60 seconds.",
-      "description": "VivaPantry creates your meal plan, grocery list, and pantry setup automatically."
+      "title": "VivaPantry | Plan meals, shop smarter, waste less.",
+      "description": "VivaPantry connects your pantry, recipes, receipts, prices, and meal plans so your household knows what to cook and what to buy."
     },
     "privacy": {
       "title": "Privacy Policy | VivaPantry",
@@ -46,8 +46,8 @@
   "home": {
     "logoAlt": "VivaPantry logo",
     "eyebrow": "AI-powered grocery and meal planning",
-    "heroTitle": "Plan meals and shopping in 60 seconds.",
-    "heroText": "VivaPantry creates your meal plan, grocery list, and pantry setup automatically, then helps you store, cook, and repeat with less waste.",
+    "heroTitle": "Plan meals, shop smarter, waste less.",
+    "heroText": "VivaPantry connects your pantry, recipes, receipts, prices, and meal plans so your household knows what to cook and what to buy.",
     "flowAria": "VivaPantry Plan Shop Store Cook Repeat flow",
     "flow": {
       "plan": {
@@ -72,9 +72,9 @@
       }
     },
     "primaryActions": "Primary actions",
-    "primaryCta": "Coming soon on Android and iOS",
+    "primaryCta": "Join the launch list",
     "secondaryCta": "View privacy policy",
-    "trustNote": "No medical advice. No diet promises. Just practical planning support.",
+    "trustNote": "No medical advice. No diet promises. Practical household planning support.",
     "previewAria": "VivaPantry app preview",
     "previewThisWeek": "This week",
     "previewSuggestedMeal": "Suggested meal",
@@ -142,14 +142,15 @@
       }
     },
     "readinessEyebrow": "App store readiness",
-    "readinessTitle": "Built for real households.",
+    "readinessTitle": "Built for weekly planning, real groceries, and real households.",
     "readinessText": "VivaPantry is designed for weekly planning routines, not one-off inspiration. It keeps grocery and meal data organized so the next shopping decision is easier to make.",
+    "readinessCta": "Coming soon on Android and iOS",
+    "readinessSecondary": "Read the privacy policy",
     "readiness": {
-      "weeklyPlanning": "Designed for weekly planning",
-      "householdPreferences": "Supports household preferences",
-      "reduceWaste": "Helps reduce food waste",
-      "organizedData": "Keeps grocery and meal data organized",
-      "policies": "Privacy and account deletion pages available"
+      "weeklyPlanning": "Designed for pantry-aware meal planning",
+      "receiptScans": "Receipt scans can improve pantry and price history",
+      "shoppingLists": "Shopping lists stay focused on what you still need",
+      "householdPreferences": "Household preferences guide smarter suggestions"
     },
     "trustEyebrow": "Trust and compliance",
     "trustTitle": "Clear policies before launch.",

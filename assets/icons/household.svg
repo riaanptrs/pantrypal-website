@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none" role="img" aria-labelledby="title">
+<title id="title">Household icon</title>
+<rect x="6" y="6" width="84" height="84" rx="24" fill="#F0FAF4" stroke="#DDE7DF" stroke-width="2"/>
+
+<circle cx="36" cy="38" r="9" fill="#2E9E53"/><circle cx="60" cy="38" r="9" fill="#FACC15"/>
+<path d="M22 69c3-13 13-20 26-20s23 7 26 20" fill="white" stroke="#14532D" stroke-width="5" stroke-linecap="round"/>
+<circle cx="48" cy="34" r="10" fill="#2E9E53" stroke="white" stroke-width="3"/>
+
+</svg>
