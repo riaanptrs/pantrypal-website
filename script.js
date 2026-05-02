@@ -1,5 +1,15 @@
 (function () {
-  const supportedLocales = ['en', 'pt-BR', 'es'];
+  const supportedLocales = ['en', 'pt', 'es'];
+  const localeDictionaries = {
+    en: 'en',
+    pt: 'pt-BR',
+    es: 'es',
+  };
+  const languageLabels = {
+    en: 'EN',
+    pt: 'PT',
+    es: 'ES',
+  };
   const defaultLocale = 'en';
   const localeStorageKey = 'vivapantry.locale';
   const localizedPages = new Set(['', 'privacy', 'terms', 'support', 'delete-account']);
@@ -10,7 +20,7 @@
     const lower = raw.toLowerCase();
 
     if (lower === 'en' || lower === 'en-us' || lower === 'en-gb') return 'en';
-    if (lower === 'pt' || lower === 'pt-br' || lower === 'pt-pt') return 'pt-BR';
+    if (lower === 'pt' || lower === 'pt-br' || lower === 'pt-pt') return 'pt';
     if (
       lower === 'es' ||
       lower === 'es-es' ||
@@ -27,7 +37,14 @@
 
   function getCurrentLocaleFromPath(pathname) {
     const firstSegment = pathname.split('/').filter(Boolean)[0];
-    return supportedLocales.includes(firstSegment) ? firstSegment : null;
+    const lower = String(firstSegment || '').toLowerCase();
+    if (supportedLocales.includes(firstSegment)) return firstSegment;
+    if (lower === 'pt-br' || lower === 'pt-pt') return 'pt';
+    if (lower === 'en-us' || lower === 'en-gb') return 'en';
+    if (lower === 'es-es' || lower === 'es-mx' || lower === 'es-ar' || lower === 'es-cl' || lower === 'es-co') {
+      return 'es';
+    }
+    return null;
   }
 
   function getPageFromPath(pathname) {
@@ -58,7 +75,7 @@
 
   function getLocalizedPath(currentPath, targetLocale) {
     const page = getPageFromPath(currentPath) || '';
-    return page ? `/${targetLocale}/${page}` : `/${targetLocale}/`;
+    return page ? `/${targetLocale}/${page}` : `/${targetLocale}`;
   }
 
   function redirectTo(path) {
@@ -89,6 +106,10 @@
     if (props.text) element.textContent = props.text;
     if (props.html) element.innerHTML = props.html;
     if (props.href) element.setAttribute('href', props.href);
+    if (props.src) element.setAttribute('src', props.src);
+    if (props.alt !== undefined) element.setAttribute('alt', props.alt);
+    if (props.loading) element.setAttribute('loading', props.loading);
+    if (props.decoding) element.setAttribute('decoding', props.decoding);
     if (props.id) element.id = props.id;
     if (props.ariaLabel) element.setAttribute('aria-label', props.ariaLabel);
     if (props.ariaCurrent) element.setAttribute('aria-current', props.ariaCurrent);
@@ -104,7 +125,7 @@
   }
 
   function setMetadata(locale, page, t) {
-    const lang = locale === 'pt-BR' ? 'pt-BR' : locale;
+    const lang = locale === 'pt' ? 'pt-BR' : locale;
     const canonicalPath = getLocalizedPath(`/${locale}/${page}`, locale);
     const canonicalUrl = `https://vivapantry.com${canonicalPath}`;
 
@@ -148,7 +169,12 @@
       href: `/${locale}/`,
       ariaLabel: t('nav.homeAria'),
     }), [
-      createElement('span', { className: 'brand-mark', text: 'V' }),
+      createElement('img', {
+        className: 'brand-mark',
+        src: '/assets/Mainicon.png',
+        alt: '',
+        decoding: 'async',
+      }),
       createElement('span', { text: 'VivaPantry' }),
     ]);
 
@@ -165,8 +191,6 @@
       ? [
           ['#features', t('nav.features')],
           ['#how-it-works', t('nav.howItWorks')],
-          [`/${locale}/privacy`, t('nav.privacy')],
-          [`/${locale}/terms`, t('nav.terms')],
           [`/${locale}/support`, t('nav.support')],
         ]
       : [
@@ -184,27 +208,23 @@
       nav.appendChild(link);
     });
 
-    const switcher = createElement('label', { className: 'language-switcher' });
-    const switcherText = createElement('span', { text: t('language.label') });
-    const select = createElement('select', { ariaLabel: t('language.label') });
+    const switcher = createElement('nav', { className: 'language-switcher', ariaLabel: t('language.label') });
     supportedLocales.forEach((supportedLocale) => {
-      const option = createElement('option', {
-        value: supportedLocale,
-        text: t(`language.${supportedLocale}`),
+      const link = createElement('a', {
+        className: 'language-link',
+        href: getLocalizedPath(window.location.pathname, supportedLocale),
+        text: languageLabels[supportedLocale],
       });
-      if (supportedLocale === locale) option.selected = true;
-      select.appendChild(option);
+      if (supportedLocale === locale) link.setAttribute('aria-current', 'true');
+      link.addEventListener('click', function () {
+        try {
+          window.localStorage.setItem(localeStorageKey, supportedLocale);
+        } catch {
+          // Ignore blocked storage.
+        }
+      });
+      switcher.appendChild(link);
     });
-    select.addEventListener('change', function () {
-      const targetLocale = normalizeLocale(select.value);
-      try {
-        window.localStorage.setItem(localeStorageKey, targetLocale);
-      } catch {
-        // Ignore blocked storage.
-      }
-      window.location.assign(getLocalizedPath(window.location.pathname, targetLocale));
-    });
-    append(switcher, [switcherText, select]);
 
     toggle.addEventListener('click', function () {
       const isOpen = nav.classList.toggle('is-open');
@@ -250,9 +270,31 @@
     const main = createElement('main');
     const hero = append(createElement('section', { className: 'hero' }), [
       append(createElement('div', { className: 'hero-copy' }), [
+        append(createElement('div', { className: 'hero-brand' }), [
+          createElement('img', {
+            className: 'hero-icon',
+            src: '/assets/Mainicon.png',
+            alt: t('home.logoAlt'),
+            decoding: 'async',
+          }),
+          createElement('span', { className: 'hero-wordmark', html: '<span>Viva</span>Pantry' }),
+        ]),
         createElement('p', { className: 'eyebrow', text: t('home.eyebrow') }),
         createElement('h1', { text: t('home.heroTitle') }),
         createElement('p', { className: 'hero-text', text: t('home.heroText') }),
+        append(createElement('div', { className: 'hero-flow-card', ariaLabel: t('home.flowAria') }),
+          ['plan', 'shop', 'store', 'cook', 'repeat'].map((key, index, items) => {
+            const item = append(createElement('div', { className: 'hero-flow-item' }), [
+              createElement('span', { className: 'hero-flow-icon', text: t(`home.flow.${key}.icon`) }),
+              createElement('strong', { text: t(`home.flow.${key}.label`) }),
+            ]);
+            if (index === items.length - 1) return item;
+            return append(createElement('div', { className: 'hero-flow-step' }), [
+              item,
+              createElement('span', { className: 'hero-flow-arrow', text: '->' }),
+            ]);
+          })
+        ),
         append(createElement('div', { className: 'hero-actions', ariaLabel: t('home.primaryActions') }), [
           createElement('span', { className: 'button primary button-static', text: t('home.primaryCta') }),
           createElement('a', { className: 'button secondary', href: `/${locale}/privacy`, text: t('home.secondaryCta') }),
@@ -262,7 +304,11 @@
       append(createElement('div', { className: 'app-preview', ariaLabel: t('home.previewAria') }), [
         append(createElement('div', { className: 'phone-frame' }), [
           append(createElement('div', { className: 'phone-header' }), [
-            createElement('span'),
+            createElement('img', {
+              src: '/assets/Mainicon.png',
+              alt: '',
+              decoding: 'async',
+            }),
             createElement('strong', { text: t('home.previewThisWeek') }),
             createElement('span'),
           ]),
@@ -280,16 +326,25 @@
       ]),
     ]);
 
-    const how = append(createElement('section', { className: 'section', id: 'how-it-works' }), [
+    const how = append(createElement('section', { className: 'section how-section', id: 'how-it-works' }), [
       append(createElement('div', { className: 'section-heading' }), [
-        createElement('p', { className: 'eyebrow', text: t('home.loopEyebrow') }),
+        append(createElement('div', { className: 'section-kicker' }), [
+          createElement('img', {
+            src: '/assets/Mainicon.png',
+            alt: '',
+            loading: 'lazy',
+            decoding: 'async',
+          }),
+          createElement('p', { className: 'eyebrow', text: t('home.loopEyebrow') }),
+        ]),
         createElement('h2', { text: t('home.loopTitle') }),
-        createElement('p', { text: t('home.loopText') }),
+        createElement('p', { className: 'section-lead', text: t('home.loopText') }),
       ]),
       append(createElement('div', { className: 'flow', ariaLabel: t('home.loopAria') }),
-        ['receipts', 'prices', 'pantry', 'mealPlans', 'shoppingLists'].map((key) =>
+        ['receipts', 'prices', 'pantry', 'mealPlans', 'shoppingLists'].map((key, index) =>
           append(createElement('article'), [
-            createElement('span', { text: t(`home.loop.${key}.title`) }),
+            createElement('span', { text: String(index + 1).padStart(2, '0') }),
+            createElement('h3', { text: t(`home.loop.${key}.title`) }),
             createElement('p', { text: t(`home.loop.${key}.text`) }),
           ])
         )
@@ -356,19 +411,32 @@
   }
 
   function renderLegalPage(page, t) {
-    const main = createElement('main', { className: 'content-page' });
+    const main = createElement('main', { className: `content-page content-page-${page}` });
     append(main, [
       append(createElement('section', { className: 'page-hero' }), [
-        createElement('p', { className: 'eyebrow', text: t(`${page}.eyebrow`) }),
-        createElement('h1', { text: t(`${page}.title`) }),
-        createElement('p', { className: 'lead', text: t(`${page}.lead`) }),
+        append(createElement('div', { className: 'page-hero-copy' }), [
+          createElement('p', { className: 'eyebrow', text: t(`${page}.eyebrow`) }),
+          createElement('h1', { text: t(`${page}.title`) }),
+          createElement('p', { className: 'lead', text: t(`${page}.lead`) }),
+        ]),
+        append(createElement('div', { className: 'page-brand-card' }), [
+          createElement('img', {
+            src: '/assets/Mainicon.png',
+            alt: t('home.logoAlt'),
+            loading: 'lazy',
+            decoding: 'async',
+          }),
+          createElement('strong', { html: '<span>Viva</span>Pantry' }),
+          createElement('p', { text: t('footer.tagline') }),
+        ]),
       ]),
       append(createElement('section', { className: 'legal-section' }),
         t(`${page}.sections`)
           .split('|||')
-          .map((block) => {
+          .map((block, index) => {
             const [title, body, list] = block.split('||');
-            const article = append(createElement('article'), [
+            const article = append(createElement('article', { className: 'legal-card' }), [
+              createElement('span', { className: 'legal-card-index', text: String(index + 1).padStart(2, '0') }),
               createElement('h2', { text: title }),
               createElement('p', { html: body }),
             ]);
@@ -398,7 +466,8 @@
   }
 
   async function loadDictionary(locale) {
-    const response = await fetch(`/src/locales/${locale}.json`, { cache: 'no-cache' });
+    const dictionaryLocale = localeDictionaries[locale] || defaultLocale;
+    const response = await fetch(`/src/locales/${dictionaryLocale}.json`, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`Could not load locale ${locale}`);
     return response.json();
   }
@@ -407,6 +476,22 @@
     const localeFromPath = getCurrentLocaleFromPath(window.location.pathname);
     const page = getPageFromPath(window.location.pathname);
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0] || '';
+
+    if (window.location.pathname === '/') {
+      const dictionary = await loadDictionary(defaultLocale);
+      const t = tFactory(dictionary);
+      window.VivaPantryI18n.t = t;
+      setMetadata(defaultLocale, '', t);
+
+      const app = document.querySelector('#app') || document.body;
+      app.innerHTML = '';
+      append(app, [
+        renderHeader(defaultLocale, '', t),
+        renderHome(defaultLocale, t),
+        renderFooter(defaultLocale, t),
+      ]);
+      return;
+    }
 
     if (!localeFromPath) {
       const targetLocale = firstSegment && unsupportedLocalePattern.test(firstSegment)

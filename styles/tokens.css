@@ -7,17 +7,17 @@
   --vp-accent: #FFC107;
   --vp-accent-dark: #C79100;
 
-  --vp-bg: #FAFAF7;
+  --vp-bg: #FAFFFB;
   --vp-surface: #FFFFFF;
   --vp-surface-soft: #F5F7F2;
   --vp-card: #FFFFFF;
 
-  --vp-text: #1C1C1C;
-  --vp-text-secondary: #666666;
-  --vp-text-muted: #8A8A8A;
+  --vp-text: #111827;
+  --vp-text-secondary: #6B7280;
+  --vp-text-muted: #9CA3AF;
 
-  --vp-border: #E3E6DE;
-  --vp-divider: #ECEFE8;
+  --vp-border: #E5E7EB;
+  --vp-divider: #E5F3E7;
 
   --vp-success: #43A047;
   --vp-warning: #F9A825;

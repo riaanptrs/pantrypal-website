@@ -19,8 +19,8 @@
   },
   "meta": {
     "home": {
-      "title": "VivaPantry | Plan meals. Track groceries. Waste less.",
-      "description": "VivaPantry helps households turn receipts, pantry items, recipes, and preferences into smarter meal plans and shopping lists."
+      "title": "VivaPantry | Plan meals and shopping in 60 seconds.",
+      "description": "VivaPantry creates your meal plan, grocery list, and pantry setup automatically."
     },
     "privacy": {
       "title": "Privacy Policy | VivaPantry",
@@ -44,9 +44,33 @@
     }
   },
   "home": {
+    "logoAlt": "VivaPantry logo",
     "eyebrow": "AI-powered grocery and meal planning",
-    "heroTitle": "Plan meals. Track groceries. Waste less.",
-    "heroText": "VivaPantry helps households turn receipts, pantry items, recipes, and preferences into smarter meal plans and shopping lists.",
+    "heroTitle": "Plan meals and shopping in 60 seconds.",
+    "heroText": "VivaPantry creates your meal plan, grocery list, and pantry setup automatically, then helps you store, cook, and repeat with less waste.",
+    "flowAria": "VivaPantry Plan Shop Store Cook Repeat flow",
+    "flow": {
+      "plan": {
+        "icon": "P",
+        "label": "Plan"
+      },
+      "shop": {
+        "icon": "S",
+        "label": "Shop"
+      },
+      "store": {
+        "icon": "T",
+        "label": "Store"
+      },
+      "cook": {
+        "icon": "C",
+        "label": "Cook"
+      },
+      "repeat": {
+        "icon": "R",
+        "label": "Repeat"
+      }
+    },
     "primaryActions": "Primary actions",
     "primaryCta": "Coming soon on Android and iOS",
     "secondaryCta": "View privacy policy",
@@ -55,7 +79,7 @@
     "previewThisWeek": "This week",
     "previewSuggestedMeal": "Suggested meal",
     "previewMeal": "Rice bowls with greens",
-    "previewMealText": "Built from pantry staples and household preferences",
+    "previewMealText": "Built from pantry staples, budget, and household preferences",
     "previewReceipt": "Receipt scan",
     "previewReceiptValue": "8 prices saved",
     "previewPantry": "Pantry check",

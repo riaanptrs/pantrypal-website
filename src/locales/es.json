@@ -19,8 +19,8 @@
   },
   "meta": {
     "home": {
-      "title": "VivaPantry | Planifica comidas. Controla compras. Desperdicia menos.",
-      "description": "VivaPantry ayuda a los hogares a convertir recibos, despensa, recetas y preferencias en mejores planes de comida y listas de compras."
+      "title": "VivaPantry | Planifica comidas y compras en 60 segundos.",
+      "description": "VivaPantry crea automáticamente tu plan de comidas, lista de compras y configuración de despensa."
     },
     "privacy": {
       "title": "Política de Privacidad | VivaPantry",
@@ -44,9 +44,33 @@
     }
   },
   "home": {
+    "logoAlt": "Logo de VivaPantry",
     "eyebrow": "Compras y planificación de comidas con IA",
-    "heroTitle": "Planifica comidas. Controla compras. Desperdicia menos.",
-    "heroText": "VivaPantry ayuda a los hogares a convertir recibos, despensa, recetas y preferencias en mejores planes de comida y listas de compras.",
+    "heroTitle": "Planifica comidas y compras en 60 segundos.",
+    "heroText": "VivaPantry crea automáticamente tu plan de comidas, lista de compras y configuración de despensa, y luego te ayuda a guardar, cocinar y repetir con menos desperdicio.",
+    "flowAria": "Flujo Planificar Comprar Guardar Cocinar Repetir de VivaPantry",
+    "flow": {
+      "plan": {
+        "icon": "P",
+        "label": "Planificar"
+      },
+      "shop": {
+        "icon": "C",
+        "label": "Comprar"
+      },
+      "store": {
+        "icon": "G",
+        "label": "Guardar"
+      },
+      "cook": {
+        "icon": "C",
+        "label": "Cocinar"
+      },
+      "repeat": {
+        "icon": "R",
+        "label": "Repetir"
+      }
+    },
     "primaryActions": "Acciones principales",
     "primaryCta": "Próximamente en Android e iOS",
     "secondaryCta": "Ver política de privacidad",
@@ -55,7 +79,7 @@
     "previewThisWeek": "Esta semana",
     "previewSuggestedMeal": "Comida sugerida",
     "previewMeal": "Tazones de arroz con verduras",
-    "previewMealText": "Creado con básicos de despensa y preferencias del hogar",
+    "previewMealText": "Creado con básicos de despensa, presupuesto y preferencias del hogar",
     "previewReceipt": "Escaneo de recibo",
     "previewReceiptValue": "8 precios guardados",
     "previewPantry": "Revisión de despensa",
