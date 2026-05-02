@@ -151,9 +151,9 @@
   },
   "delete-account": {
     "eyebrow": "Delete Account",
-    "title": "Request account and data deletion.",
-    "lead": "You can ask us to delete your VivaPantry account and related app data by email.",
-    "sections": "How to request deletion||Email <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> with the subject line “Delete my VivaPantry account”.|||Required information||Include the account email used in the app so we can identify the correct account.|||What may be deleted||Deletion may include your account, pantry items, recipes, grocery lists, receipts, receipt images, preferences, household data, and related app records.|||Processing||We may need to verify ownership of the account before completing deletion. Some records may be retained if required for legal, security, fraud prevention, or operational reasons."
+    "title": "VivaPantry Account Deletion",
+    "lead": "You can request deletion of your VivaPantry account and the data associated with it.",
+    "sections": "How to request deletion||1. Send an email to <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> with the subject line \"Delete my account\".<br>2. Include the email address used to create your VivaPantry account.<br>3. Our team will confirm receipt and process the request.|||Data that will be deleted||The deletion request covers these categories:||Account information|Profile and preference data|Pantry items|Shopping lists|Recipes created or saved|Meal plans|Data associated with use of the app|||Data that may be temporarily retained||Some technical records, security logs, anti-fraud records, or information required for legal obligations may be retained for a limited period when necessary.|||Processing time||Deletion requests will be processed within 30 days after the request is confirmed.|||Questions||If you have questions, contact <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a>.|||Portuguese version||Esta página também está disponível em <a href=\"/pt-BR/delete-account/\">português</a>."
   },
   "notFound": {
     "eyebrow": "404",

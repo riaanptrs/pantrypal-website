@@ -151,9 +151,9 @@
   },
   "delete-account": {
     "eyebrow": "Excluir conta",
-    "title": "Solicite a exclusão da conta e dos dados.",
-    "lead": "Você pode pedir por email a exclusão da sua conta VivaPantry e dos dados relacionados do app.",
-    "sections": "Como solicitar exclusão||Envie email para <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> com o assunto “Excluir minha conta VivaPantry”.|||Informações necessárias||Inclua o email da conta usado no app para que possamos identificar a conta correta.|||O que pode ser excluído||A exclusão pode incluir sua conta, itens da despensa, receitas, listas de compras, recibos, imagens de recibos, preferências, dados da casa e registros relacionados do app.|||Processamento||Podemos precisar verificar a titularidade da conta antes de concluir a exclusão. Alguns registros podem ser mantidos se necessário por motivos legais, de segurança, prevenção a fraude ou operação."
+    "title": "Exclusão de Conta VivaPantry",
+    "lead": "Você pode solicitar a exclusão da sua conta VivaPantry e dos dados associados a ela.",
+    "sections": "Como solicitar a exclusão||1. Envie um e-mail para <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a> com o assunto \"Excluir minha conta\".<br>2. Inclua no e-mail o endereço usado para criar sua conta no VivaPantry.<br>3. Nossa equipe confirmará o recebimento e processará a solicitação.|||Dados que serão excluídos||A solicitação de exclusão cobre estas categorias:||Informações da conta|Dados de perfil e preferências|Itens da despensa|Listas de compras|Receitas criadas ou salvas|Planos de refeições|Dados associados ao uso do aplicativo|||Dados que podem ser mantidos temporariamente||Alguns registros técnicos, logs de segurança, registros antifraude ou informações exigidas por obrigações legais podem ser mantidos por um período limitado, quando necessário.|||Prazo de processamento||As solicitações de exclusão serão processadas em até 30 dias após a confirmação da solicitação.|||Dúvidas||Se tiver dúvidas, entre em contato pelo e-mail <a href=\"mailto:support@vivapantry.com\">support@vivapantry.com</a>.|||English version||This page is also available in <a href=\"/en/delete-account/\">English</a>."
   },
   "notFound": {
     "eyebrow": "404",
